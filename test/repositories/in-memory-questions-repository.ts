@@ -5,6 +5,18 @@ import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug'
 export class InMemoryQuestionsRepository implements QuestionsRepository {
   public itens: Question[] = []
 
+  async findById(questionId: string): Promise<Question | null> {
+    const question = this.itens.find(
+      (item) => item.id.toString() === questionId
+    )
+
+    if (!question) {
+      return null
+    }
+
+    return question
+  }
+
   async create(question: Question): Promise<void> {
     this.itens.push(question)
   }
@@ -17,5 +29,13 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
     }
 
     return question
+  }
+
+  async delete(question: Question): Promise<void> {
+    const questionIndex = this.itens.findIndex(
+      (item) => item.id === question.id
+    )
+
+    this.itens.splice(questionIndex, 1)
   }
 }
