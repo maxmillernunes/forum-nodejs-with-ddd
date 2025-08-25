@@ -1,5 +1,4 @@
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
-import { Slug } from '../../enterprise/entities/value-objects/slug'
 import { makeQuestion } from 'test/factories/make-question'
 import { DeleteQuestionUseCase } from './delete-question'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
@@ -34,7 +33,7 @@ describe('Delete question', () => {
 
     await inMemoryQuestionsRepository.create(newQuestion)
 
-    expect(() =>
+    await expect(() =>
       sut.execute({ authorId: 'author-id-1', questionId: 'question-id' })
     ).rejects.toBeInstanceOf(Error)
   })
