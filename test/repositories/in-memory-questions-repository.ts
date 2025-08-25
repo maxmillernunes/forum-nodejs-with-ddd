@@ -17,10 +17,6 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
     return question
   }
 
-  async create(question: Question): Promise<void> {
-    this.itens.push(question)
-  }
-
   async findBySlug(slug: string): Promise<Question | null> {
     const question = this.itens.find((item) => item.slug.value === slug)
 
@@ -29,6 +25,18 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
     }
 
     return question
+  }
+
+  async create(question: Question): Promise<void> {
+    this.itens.push(question)
+  }
+
+  async save(question: Question): Promise<void> {
+    const questionIndex = this.itens.findIndex(
+      (item) => item.id === question.id
+    )
+
+    this.itens[questionIndex] = question
   }
 
   async delete(question: Question): Promise<void> {
