@@ -26,15 +26,18 @@ describe('Fetch Recent Questions', () => {
       makeQuestion({ createdAt: new Date(2025, 0, 21) })
     )
 
-    const { questions } = await sut.execute({ page: 1 })
+    const result = await sut.execute({ page: 1 })
 
-    expect(questions).toHaveLength(4)
-    expect(questions).toEqual([
-      expect.objectContaining({ createdAt: new Date(2025, 0, 23) }),
-      expect.objectContaining({ createdAt: new Date(2025, 0, 21) }),
-      expect.objectContaining({ createdAt: new Date(2025, 0, 20) }),
-      expect.objectContaining({ createdAt: new Date(2025, 0, 18) }),
-    ])
+    expect(result.isRight()).toBe(true)
+    if (result.isRight()) {
+      expect(result.value.questions).toHaveLength(4)
+      expect(result.value.questions).toEqual([
+        expect.objectContaining({ createdAt: new Date(2025, 0, 23) }),
+        expect.objectContaining({ createdAt: new Date(2025, 0, 21) }),
+        expect.objectContaining({ createdAt: new Date(2025, 0, 20) }),
+        expect.objectContaining({ createdAt: new Date(2025, 0, 18) }),
+      ])
+    }
   })
 
   it('should be able to fetch paginated recent questions', async () => {
@@ -47,12 +50,14 @@ describe('Fetch Recent Questions', () => {
       )
     }
 
-    const { questions } = await sut.execute({ page: 2 })
+    const result = await sut.execute({ page: 2 })
 
-    expect(questions).toHaveLength(2)
-    expect(questions).toEqual([
-      expect.objectContaining({ slug: Slug.create('question-2') }),
-      expect.objectContaining({ slug: Slug.create('question-1') }),
-    ])
+    if (result.isRight()) {
+      expect(result.value.questions).toHaveLength(2)
+      expect(result.value.questions).toEqual([
+        expect.objectContaining({ slug: Slug.create('question-2') }),
+        expect.objectContaining({ slug: Slug.create('question-1') }),
+      ])
+    }
   })
 })

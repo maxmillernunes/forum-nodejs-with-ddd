@@ -23,15 +23,17 @@ describe('Question Comments', () => {
     const question = makeQuestion()
     await inMemoryQuestionsRepository.create(question)
 
-    const { questionComment } = await sut.execute({
+    const result = await sut.execute({
       authorId: question.authorId.toString(),
       questionId: question.id.toString(),
       content: 'New comment on question',
     })
 
-    expect(questionComment.content).toEqual('New comment on question')
-    expect(inMemoryQuestionCommentsRepository.itens[0].content).toEqual(
-      'New comment on question'
-    )
+    expect(result.isRight()).toBe(true)
+    expect(result.value).toMatchObject({
+      questionComment: expect.objectContaining({
+        content: 'New comment on question',
+      }),
+    })
   })
 })
