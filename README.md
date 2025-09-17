@@ -5,7 +5,7 @@
 - [Testes](#testes)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Conceitos DDD](#conceitos-ddd)
-- [Sobre](#about)
+- [About](#about)
 - [Installation](#installation)
 - [Testing](#testing)
 - [Project Structure](#project-structure)
