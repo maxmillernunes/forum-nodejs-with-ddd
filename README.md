@@ -69,12 +69,12 @@ npm run test:watch
 │       │    │   └── 📁 use-cases/
 │       │    │       ├── 📄 use-case-example.ts
 │       │    └── 📁 enterprise/
-│       │        └── 📁 entities/
-│       │            ├── 📁 value-objects/
-│       │            │   ├── 📄 value-object-example.ts
-│       │            ├── 📄 entity-example.ts
-│       │       └── 📁 events/
-│       │           ├── 📄 event-example.ts
+│       │        ├── 📁 entities/
+│       │        │    ├── 📁 value-objects/
+│       │        │    │   ├── 📄 value-object-example.ts
+│       │        │    ├── 📄 entity-example.ts
+│       │        └── 📁 events/
+│       │            ├── 📄 event-example.ts
 │       └── 📁 notification/
 │           ├── 📁 application/
 │           │   ├── 📁 repositories/
@@ -173,12 +173,12 @@ npm run test:watch
 │       │    │   └── 📁 use-cases/
 │       │    │       ├── 📄 use-case-example.ts
 │       │    └── 📁 enterprise/
-│       │        └── 📁 entities/
-│       │            ├── 📁 value-objects/
-│       │            │   ├── 📄 value-object-example.ts
-│       │            ├── 📄 entity-example.ts
-│       │       └── 📁 events/
-│       │           ├── 📄 event-example.ts
+│       │        ├── 📁 entities/
+│       │        │    ├── 📁 value-objects/
+│       │        │    │   ├── 📄 value-object-example.ts
+│       │        │    ├── 📄 entity-example.ts
+│       │        └── 📁 events/
+│       │            ├── 📄 event-example.ts
 │       └── 📁 notification/
 │           ├── 📁 application/
 │           │   ├── 📁 repositories/
