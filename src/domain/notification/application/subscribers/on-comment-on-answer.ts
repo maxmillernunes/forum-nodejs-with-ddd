@@ -3,7 +3,7 @@ import type { EventHandler } from '@/core/events/event-handler'
 import { CommentOnAnswerEvent } from '@/domain/forum/enterprise/events/comment-on-answer-event'
 import { SendNotificationUseCase } from '../use-case/send-notification'
 import { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository'
-import type { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
+import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
 
 export class OnCommentOnAnswer implements EventHandler {
   constructor(
@@ -21,9 +21,11 @@ export class OnCommentOnAnswer implements EventHandler {
     )
   }
 
-  async sendNewCommentOnAnswerNotification({ comment }: CommentOnAnswerEvent) {
+  async sendNewCommentOnAnswerNotification({
+    answerComment,
+  }: CommentOnAnswerEvent) {
     const answer = await this.answersRepository.findById(
-      comment.answerId.toString()
+      answerComment.answerId.toString()
     )
 
     if (!answer) return
@@ -36,9 +38,9 @@ export class OnCommentOnAnswer implements EventHandler {
 
     await this.sendNotificationUseCase.execute({
       recipientId: answer.authorId.toString(),
-      title: 'Novo comentário em sua resposta.',
+      title: `Sua resposta: "${answer.content.substring(0, 40).concat('...')}, recebeu um novo comentário.`,
       content: `A resposta que voce envio em "${question.title
-        .substring(0, 20)
+        .substring(0, 80)
         .concat('...')} recebeu um novo comentário!"`,
     })
   }

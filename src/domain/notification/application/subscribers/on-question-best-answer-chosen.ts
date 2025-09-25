@@ -32,7 +32,7 @@ export class OnQuestionBestAnswerChosen implements EventHandler {
         recipientId: question.authorId.toString(),
         title: 'Sua response foi escolhida',
         content: `A resposta que voce envio em "${question.title
-          .substring(0, 20)
+          .substring(0, 100)
           .concat('...')} foi escolhida pelo autor!"`,
       })
     }
