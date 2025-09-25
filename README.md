@@ -32,9 +32,10 @@ npm run test:watch
 
 ## Estrutura do Projeto
 
-- `src/`: Código principal do domínio e casos de uso
-- `test/`: Repositórios e fábricas em memória para testes
-- `core/`: Utilitários e tipos base
+- `src/`: Código principal do domínio, incluindo entidades, casos de uso, repositórios e value objects.
+- `test/`: Repositórios em memória, fábricas e utilitários para testes automatizados.
+- `core/`: Tipos base, utilitários, eventos de domínio e erros compartilhados.
+- `domain/`: Subdomínios como `forum` e `notification`, organizados em camadas de aplicação e entidades.
 
 ### Exemplo arvore de arquivos
 
@@ -43,27 +44,53 @@ npm run test:watch
 │   ├── 📁 core/
 │   │   ├── 📁 entities/
 │   │   │   ├── 📄 base-entity-example.ts
+│   │   ├── 📁 errors/
+│   │   │   ├── 📁 errors/
+│   │   │   │   ├── 📄 error.example.ts
+│   │   │   └── 📄 use-case-interface-error.example.ts
+│   │   ├── 📁 events/
+│   │   │   ├── 📄 domain-event.ts
+│   │   │   ├── 📄 domain-events.spec.ts
+│   │   │   ├── 📄 domain-events.ts
+│   │   │   └── 📄 event-handler.ts
 │   │   ├── 📁 repositories/
 │   │   │   └── 📄 pagination-params-example.ts
-│   │   └── 📁 types/
-│   │       └── 📄 optional-example.ts
+│   │   ├── 📁 types/
+│   │   │   └── 📄 optional-example.ts
+│   │   ├── 📄 either.spec.ts
+│   │   └── 📄 either.ts
 │   └── 📁 domain/
-│       └── 📁 forum/
+│       ├── 📁 forum/
+│       │    ├── 📁 application/
+│       │    │   ├── 📁 repositories/
+│       │    │   │   ├── 📄 repository-example.ts
+│       │    │   └── 📁 use-cases/
+│       │    │       ├── 📄 use-case-example.ts
+│       │    └── 📁 enterprise/
+│       │        └── 📁 entities/
+│       │            ├── 📁 value-objects/
+│       │            │   ├── 📄 value-object-example.ts
+│       │            ├── 📄 entity-example.ts
+│       │       └── 📁 events/
+│       │           ├── 📄 event-example.ts
+│       └── 📁 notification/
 │           ├── 📁 application/
 │           │   ├── 📁 repositories/
-│           │   │   ├── 📄 repository-example.ts
-│           │   └── 📁 use-cases/
+│           │   │   └── 📄 repository-example.ts
+│           │   ├── 📁 subscribers/
+│           │   │   ├── 📄 on-subscriber-example.spec.ts
+│           │   └── 📁 use-case/
 │           │       ├── 📄 use-case-example.ts
 │           └── 📁 enterprise/
 │               └── 📁 entities/
-│                   ├── 📁 value-objects/
-│                   │   ├── 📄 value-object-example.ts
-│                   ├── 📄 entity-example.ts
+│                   └── 📄 entity-example.ts
 ├── 📁 test/
 │   ├── 📁 factories/
 │   │   ├── 📄 make-example.ts
-│   └── 📁 repositories/
-│       ├── 📄 in-memory-example-repository.ts
+│   ├── 📁 repositories/
+│   │   ├── 📄 in-memory-example-repository.ts
+│   └── 📁 utils/
+│       └── 📄 utils-example.ts
 ├── 📄 package.json
 ```
 
