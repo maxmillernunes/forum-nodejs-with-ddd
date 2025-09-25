@@ -124,9 +124,10 @@ npm run test:watch
 
 ## Project Structure
 
-- `src/`: Main domain code and use cases
-- `test/`: In-memory repositories and factories for testing
-- `core/`: Utilities and base types
+- `src/`: Main domain code, including entities, use cases, repositories, and value objects.
+- `test/`: In-memory repositories, factories, and utilities for automated testing.
+- `core/`: Base types, utilities, domain events, and shared errors.
+- `domain/`: Subdomains such as `forum` and `notification`, organized into application layers and entities.
 
 ### Example file tree
 
@@ -135,27 +136,53 @@ npm run test:watch
 │   ├── 📁 core/
 │   │   ├── 📁 entities/
 │   │   │   ├── 📄 base-entity-example.ts
+│   │   ├── 📁 errors/
+│   │   │   ├── 📁 errors/
+│   │   │   │   ├── 📄 error.example.ts
+│   │   │   └── 📄 use-case-interface-error.example.ts
+│   │   ├── 📁 events/
+│   │   │   ├── 📄 domain-event.ts
+│   │   │   ├── 📄 domain-events.spec.ts
+│   │   │   ├── 📄 domain-events.ts
+│   │   │   └── 📄 event-handler.ts
 │   │   ├── 📁 repositories/
 │   │   │   └── 📄 pagination-params-example.ts
-│   │   └── 📁 types/
-│   │       └── 📄 optional-example.ts
+│   │   ├── 📁 types/
+│   │   │   └── 📄 optional-example.ts
+│   │   ├── 📄 either.spec.ts
+│   │   └── 📄 either.ts
 │   └── 📁 domain/
-│       └── 📁 forum/
+│       ├── 📁 forum/
+│       │    ├── 📁 application/
+│       │    │   ├── 📁 repositories/
+│       │    │   │   ├── 📄 repository-example.ts
+│       │    │   └── 📁 use-cases/
+│       │    │       ├── 📄 use-case-example.ts
+│       │    └── 📁 enterprise/
+│       │        └── 📁 entities/
+│       │            ├── 📁 value-objects/
+│       │            │   ├── 📄 value-object-example.ts
+│       │            ├── 📄 entity-example.ts
+│       │       └── 📁 events/
+│       │           ├── 📄 event-example.ts
+│       └── 📁 notification/
 │           ├── 📁 application/
 │           │   ├── 📁 repositories/
-│           │   │   ├── 📄 repository-example.ts
-│           │   └── 📁 use-cases/
+│           │   │   └── 📄 repository-example.ts
+│           │   ├── 📁 subscribers/
+│           │   │   ├── 📄 on-subscriber-example.spec.ts
+│           │   └── 📁 use-case/
 │           │       ├── 📄 use-case-example.ts
 │           └── 📁 enterprise/
 │               └── 📁 entities/
-│                   ├── 📁 value-objects/
-│                   │   ├── 📄 value-object-example.ts
-│                   ├── 📄 entity-example.ts
+│                   └── 📄 entity-example.ts
 ├── 📁 test/
 │   ├── 📁 factories/
 │   │   ├── 📄 make-example.ts
-│   └── 📁 repositories/
-│       ├── 📄 in-memory-example-repository.ts
+│   ├── 📁 repositories/
+│   │   ├── 📄 in-memory-example-repository.ts
+│   └── 📁 utils/
+│       └── 📄 utils-example.ts
 ├── 📄 package.json
 ```
 
