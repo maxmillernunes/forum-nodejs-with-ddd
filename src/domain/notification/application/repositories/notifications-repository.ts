@@ -1,4 +1,4 @@
-import type { Notification } from '../../enterprise/notification'
+import type { Notification } from '../../enterprise/entities/notification'
 
 export interface NotificationsRepository {
   findById(id: string): Promise<Notification | null>
